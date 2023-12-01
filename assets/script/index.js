@@ -1,26 +1,5 @@
 'use strict';
 
-// const words = [
-//     'dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building',
-//     'population', 'weather', 'bottle', 'history', 'dream', 'character', 'money',
-//     'absolute', 'discipline', 'machine', 'accurate', 'connection', 'rainbow',
-//     'bicycle', 'eclipse', 'calculator', 'trouble', 'watermelon', 'developer',
-//     'philosophy', 'database', 'periodic', 'capitalism', 'abominable',
-//     'component', 'future', 'pasta', 'microwave', 'jungle', 'wallet', 'canada',
-//     'coffee', 'beauty', 'agency', 'chocolate', 'eleven', 'technology', 'promise',
-//     'alphabet', 'knowledge', 'magician', 'professor', 'triangle', 'earthquake',
-//     'baseball', 'beyond', 'evolution', 'banana', 'perfume', 'computer',
-//     'management', 'discovery', 'ambition', 'music', 'eagle', 'crown', 'chess',
-//     'laptop', 'bedroom', 'delivery', 'enemy', 'button', 'superman', 'library',
-//     'unboxing', 'bookstore', 'language', 'homework', 'fantastic', 'economy',
-//     'interview', 'awesome', 'challenge', 'science', 'mystery', 'famous',
-//     'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow',
-//     'keyboard', 'window', 'beans', 'truck', 'sheep', 'band', 'level', 'hope',
-//     'download', 'blue', 'actor', 'desk', 'watch', 'giraffe', 'brazil', 'mask',
-//     'audio', 'school', 'detective', 'hero', 'progress', 'winter', 'passion',
-//     'rebel', 'amber', 'jacket', 'article', 'paradox', 'social', 'resort', 'escape'
-//    ];
-
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -89,16 +68,16 @@ function checkInput() {
         }
     } else {
         // Change the border color and shadow for 1 second
-        const wordDisplay = document.querySelector('.theWord');
+        const wordDisplay = document.querySelector('.gameBoard');
         const wordDisplay2 = document.querySelector('.typingArea');
-        wordDisplay.style.border = '1px solid red';
+        wordDisplay.style.border = '2px solid red';
         wordDisplay.style.boxShadow = '1px 1px 20px 1px red';
         wordDisplay2.style.border = '1px solid red';
         wordDisplay2.style.boxShadow = '1px 1px 20px 1px red';
 
         // Reset the styles after 1 second
         setTimeout(() => {
-            wordDisplay.style.border = '1px solid #edeaea50';
+            wordDisplay.style.border = '2px solid #edeaea50';
             wordDisplay.style.boxShadow = '1px 1px 20px 1px #edeaea40';
             wordDisplay2.style.border = '1px solid #edeaea50';
             wordDisplay2.style.boxShadow = '1px 1px 20px 1px #edeaea40';
@@ -116,6 +95,24 @@ document.addEventListener("DOMContentLoaded", function() {
     const startBtn = document.querySelector('.start');
     const pauseBtn = document.querySelector('.pause');
     const restartBtn = document.querySelector('.restart');
+    const helpBtn = document.querySelector('.help');
+    const modal = document.querySelector('.modal');
+    const closeBtn = document.querySelector('.close');
+
+    
+    helpBtn.addEventListener('click', function() {
+        modal.style.display = 'block';
+    });
+
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
 
     function startTimer() {
         if (!isTimerRunning) {
@@ -129,6 +126,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }, 1000);
             isTimerRunning = true;
+            const typingArea = document.querySelector('.typingArea');
+            typingArea.focus();
         } else {
             clearInterval(timerInterval);
             isTimerRunning = false;
