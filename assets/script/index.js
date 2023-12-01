@@ -88,7 +88,21 @@ function checkInput() {
             wordDisplay.textContent = 'No more words';
         }
     } else {
-        alert('Words do not match. Try again!');
+        // Change the border color and shadow for 1 second
+        const wordDisplay = document.querySelector('.theWord');
+        const wordDisplay2 = document.querySelector('.typingArea');
+        wordDisplay.style.border = '1px solid red';
+        wordDisplay.style.boxShadow = '1px 1px 20px 1px red';
+        wordDisplay2.style.border = '1px solid red';
+        wordDisplay2.style.boxShadow = '1px 1px 20px 1px red';
+
+        // Reset the styles after 1 second
+        setTimeout(() => {
+            wordDisplay.style.border = '1px solid #edeaea50';
+            wordDisplay.style.boxShadow = '1px 1px 20px 1px #edeaea40';
+            wordDisplay2.style.border = '1px solid #edeaea50';
+            wordDisplay2.style.boxShadow = '1px 1px 20px 1px #edeaea40';
+        }, 1000);
     }
 }
 
