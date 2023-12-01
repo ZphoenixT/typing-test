@@ -9,6 +9,7 @@ function shuffleArray(array) {
 }
 
 let randomizedWords = generateNewArray();
+let updatedScore = 0;
 
 function generateNewArray() {
     const words = [
@@ -83,6 +84,25 @@ function checkInput() {
             wordDisplay2.style.boxShadow = '1px 1px 20px 1px #edeaea40';
         }, 1000);
     }
+
+    if (updatedScore === 120) {
+        const finalScoreDisplay = document.querySelector('.final-score');
+        finalScoreDisplay.textContent = updatedScore;
+        const endGameModal = document.querySelector('.end-game-modal');
+        endGameModal.style.display = 'block';
+    }
+
+    checkEndGame();
+};
+
+function checkEndGame() {
+    const timerDisplay = document.querySelector('.timer');
+    const timerValue = parseInt(timerDisplay.textContent);
+
+    if (timerValue === 0) {
+        const endGameModal = document.querySelector('.end-game-modal');
+        endGameModal.style.display = 'block';
+    }
 }
 
 
@@ -99,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const modal = document.querySelector('.modal');
     const closeBtn = document.querySelector('.close');
 
-    
+
     helpBtn.addEventListener('click', function() {
         modal.style.display = 'block';
     });
@@ -120,6 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
             timerInterval = setInterval(() => {
                 timerValue--;
                 timerDisplay.textContent = timerValue;
+                checkEndGame();
                 if (timerValue <= 0) {
                     clearInterval(timerInterval);
                     // You can add any actions after the countdown reaches 0 here
@@ -141,21 +162,35 @@ document.addEventListener("DOMContentLoaded", function() {
         isTimerRunning = false;
         startBtn.disabled = false; // Enable the Start button on reset
         
-        // Clear input field
+        // Clear input box
         const typingArea = document.querySelector('.typingArea');
         typingArea.value = '';
     
-        // Reset the displayed word
+        // Reset displayed word
         const wordDisplay = document.querySelector('.theWord');
         wordDisplay.textContent = 'Word Appears Here';
 
-        // Reset the score
+        // Reset score
         const scoreElement = document.querySelector('.score');
         scoreElement.textContent = '0/120';
 
-        // Generate a new shuffled array
+        // Generate new array
         randomizedWords = generateNewArray();
+        
+        // Modal for end of game
+        if (timerValue === 0 || updatedScore === 120) {
+            const endGameModal = document.querySelector('.end-game-modal');
+            endGameModal.style.display = 'block';
+        }
     }
+
+    function closeEndGameModal() {
+        const endGameModal = document.querySelector('.end-game-modal');
+        endGameModal.style.display = 'none';
+    }
+
+    const closeEndGameBtn = document.querySelector('.end-game-modal .close');
+    closeEndGameBtn.addEventListener('click', closeEndGameModal);
 
     const typingArea = document.querySelector('.typingArea');
     typingArea.addEventListener('keypress', function(event) {
