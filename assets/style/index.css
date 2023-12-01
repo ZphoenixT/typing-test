@@ -53,40 +53,48 @@ body {
     height: 50px;
     background-color: var(--col-main-blue);
     border-radius: 24px;
+    transition: all 0.3s ease-in-out;
 }
 
 .pause {
     background-color: #d80000;
+    box-shadow: 1px 1px 20px 1px #d8000090;
 }
 
 .start {
     background-color: #00d700;
+    box-shadow: 1px 1px 20px 1px #00d70090;
+}
+
+.restart {
+    box-shadow: 1px 1px 20px 1px #01a6e890;
 }
 
 .help {
     background-color: #808080;
+    box-shadow: 1px 1px 20px 1px #80808090;
 }
 
 /*--------BUTTON EFFECTS--------*/
 
-.btn:hover {
-    transition: all 0.3s ease-in-out;
-}
-
 .pause:hover {
     background-color: #c40000;
+    box-shadow: 1px 1px 30px 1px #d8000090;
 }
 
 .start:hover {
     background-color: #00c300;
+    box-shadow: 1px 1px 30px 1px #00d70090;
 }
 
 .restart:hover {
     background-color: var(--col-main-blue-hover);
+    box-shadow: 1px 1px 30px 1px #01a6e890;
 }
 
 .help:hover {
     background-color: #767676;
+    box-shadow: 1px 1px 30px 1px #80808090;
 }
 
 
@@ -126,15 +134,17 @@ body {
 /*--------GAME BOARD--------*/
 
 .gameBoard {
-    border: 2px solid var(--col-main-orange);
     width: 800px;
     height: 500px;
+    background-color: var(--col-other-dark);
+    border-radius: 24px;
 }
 
 .theWord {
     width: 500px;
-    height: 100px;
-    border: 2px solid var(--col-main-orange);
+    height: 75px;
+    border-radius: 16px;
+    background-color: #353d4a;
     font-size: 50px;
     text-align: center;
 }
@@ -142,9 +152,11 @@ body {
 .typingArea {
     width: 400px;
     height: 100px;
-    border-radius: 24px;
-    background-color: var(--col-other-dark);
-    border: 1px solid var(--col-main-blue);
+    border-radius: 16px;
+    background-color: #353d4a;
+    color: var(--col-white);
+    text-align: center;
+    font-size: 30px;
 }
 
 /*--------end of game board--------*/
