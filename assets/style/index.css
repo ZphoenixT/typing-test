@@ -168,7 +168,7 @@ body {
 /*--------end of game board--------*/
 
 .modal {
-    display: none; /* Hide modal by default */
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -179,7 +179,6 @@ body {
     background-color: #11111150;
 }
 
-/* Modal content */
 .modal-content {
     width: 500px;
     height: 700px;
@@ -190,7 +189,6 @@ body {
     color: var(--col-black);
 }
 
-/* Close button */
 .close {
     color: var(--col-black);
     float: right;

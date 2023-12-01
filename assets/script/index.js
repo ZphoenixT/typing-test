@@ -48,7 +48,7 @@ function checkInput() {
     const displayedWord = wordDisplay.textContent.toLowerCase();
 
     if (userTypedWord === displayedWord) {
-        // Add 1 to the score (assuming the score is displayed in the element with class 'score')
+        // add 1 to the score
         const scoreElement = document.querySelector('.score');
         const currentScore = parseInt(scoreElement.textContent.split('/')[0]);
         const updatedScore = currentScore + 1;
@@ -57,17 +57,17 @@ function checkInput() {
         // Splice the first word in the array
         randomizedWords.splice(0, 1);
 
-        // Clear the input field
+        // Clear input field
         typingArea.value = '';
 
-        // Display the next word
+        //next word
         if (randomizedWords.length > 0) {
             displayFirstWord();
         } else {
             wordDisplay.textContent = 'No more words';
         }
     } else {
-        // Change the border color and shadow for 1 second
+        // Change the style for 1sec
         const wordDisplay = document.querySelector('.gameBoard');
         const wordDisplay2 = document.querySelector('.typingArea');
         wordDisplay.style.border = '2px solid red';
@@ -75,7 +75,7 @@ function checkInput() {
         wordDisplay2.style.border = '1px solid red';
         wordDisplay2.style.boxShadow = '1px 1px 20px 1px red';
 
-        // Reset the styles after 1 second
+        // Reset the styles after 1sec
         setTimeout(() => {
             wordDisplay.style.border = '2px solid #edeaea50';
             wordDisplay.style.boxShadow = '1px 1px 20px 1px #edeaea40';
@@ -95,7 +95,7 @@ function checkInput() {
 
 document.addEventListener("DOMContentLoaded", function() {
     let timerInterval;
-    let timerValue = 100; // Initial timer value in seconds
+    let timerValue = 100; // time
     let isTimerRunning = false;
 
     const timerDisplay = document.querySelector('.timer');
@@ -130,8 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (timerValue <= 0) {
                     clearInterval(timerInterval);
                     const typingArea = document.querySelector('.typingArea');
-                    typingArea.disabled = true; // Disable the input field when timer reaches 0
-                    // You can add any actions after the countdown reaches 0 here
+                    typingArea.disabled = true; 
                 }
             }, 1000);
             isTimerRunning = true;
@@ -145,10 +144,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function resetTimer() {
         clearInterval(timerInterval);
-        timerValue = 100; // Reset timer value
+        timerValue = 100; 
         timerDisplay.textContent = timerValue;
         isTimerRunning = false;
-        startBtn.disabled = false; // Enable the Start button on reset
+        startBtn.disabled = false;
         
         // Clear input box
         const typingArea = document.querySelector('.typingArea');
@@ -180,9 +179,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    startBtn.disabled = true; // Disable Start button initially
+    startBtn.disabled = true;
     startBtn.addEventListener('click', startTimer);
-    pauseBtn.addEventListener('click', startTimer); // Pauses the timer as well
+    pauseBtn.addEventListener('click', startTimer); 
     restartBtn.addEventListener('click', resetTimer);
 
     // Enable Start button when timer reaches 100
