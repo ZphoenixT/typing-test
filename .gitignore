@@ -1,0 +1,5 @@
+# ignore ALL .json files
+*.json
+
+# ignore all files in ANY directory named node_moduels
+*node_modules/
