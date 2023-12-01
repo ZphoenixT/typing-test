@@ -9,7 +9,6 @@ function shuffleArray(array) {
 }
 
 let randomizedWords = generateNewArray();
-let updatedScore = 0;
 
 function generateNewArray() {
     const words = [
@@ -91,19 +90,7 @@ function checkInput() {
         const endGameModal = document.querySelector('.end-game-modal');
         endGameModal.style.display = 'block';
     }
-
-    checkEndGame();
 };
-
-function checkEndGame() {
-    const timerDisplay = document.querySelector('.timer');
-    const timerValue = parseInt(timerDisplay.textContent);
-
-    if (timerValue === 0) {
-        const endGameModal = document.querySelector('.end-game-modal');
-        endGameModal.style.display = 'block';
-    }
-}
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -140,9 +127,10 @@ document.addEventListener("DOMContentLoaded", function() {
             timerInterval = setInterval(() => {
                 timerValue--;
                 timerDisplay.textContent = timerValue;
-                checkEndGame();
                 if (timerValue <= 0) {
                     clearInterval(timerInterval);
+                    const typingArea = document.querySelector('.typingArea');
+                    typingArea.disabled = true; // Disable the input field when timer reaches 0
                     // You can add any actions after the countdown reaches 0 here
                 }
             }, 1000);
@@ -165,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Clear input box
         const typingArea = document.querySelector('.typingArea');
         typingArea.value = '';
+        typingArea.disabled = false;
     
         // Reset displayed word
         const wordDisplay = document.querySelector('.theWord');
@@ -183,14 +172,6 @@ document.addEventListener("DOMContentLoaded", function() {
             endGameModal.style.display = 'block';
         }
     }
-
-    function closeEndGameModal() {
-        const endGameModal = document.querySelector('.end-game-modal');
-        endGameModal.style.display = 'none';
-    }
-
-    const closeEndGameBtn = document.querySelector('.end-game-modal .close');
-    closeEndGameBtn.addEventListener('click', closeEndGameModal);
 
     const typingArea = document.querySelector('.typingArea');
     typingArea.addEventListener('keypress', function(event) {
