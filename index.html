@@ -17,32 +17,39 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div class="container center">
+        <div class="container center textStyle">
 
-            <div class="theHead">
-                <h1 class="pageTile">Cool Title</h1>
-                <button class="help">help</button>
+            <div class="theHead center">
+                <h1 class="pageTitle">Cool Title</h1>
+                <div class="gameButtons">
+                    <button class="btn pause">pause</button>
+                    <button class="btn start">start</button>
+                    <button class="btn restart">reset</button>
+                    <button class="btn help">help</button>
+                </div>
             </div>
 
-            <div class="scoreBoard">
-                <h2 class="timer">99sec</h2>
-                <h3 class="score">0/120</h3>
+            <div class="scoreBoard center">
+                <div class="SB sbWPM">
+                    <h3 class="wordsPerMin">72wpm</h3>
+                </div>
+                <div class="sbTimer">
+                    <h2 class="timer">100</h2>
+                </div>
+                <div class="SB sbScore">
+                    <h3 class="score">0/120</h3>
+                </div>
             </div>
 
-            <div class="gameBoard">
+            <div class="gameBoard center">
                 <div class="wordDisplay">
-                    <h2 class="theWord">TempWord</h2>
+                    <h2 class="theWord">FifteenWordsHere</h2>
                 </div>
                 <div class="typingBox">
                     <input type="text" class="typingArea">
                 </div>
             </div>
 
-            <div class="gameButtons">
-                <button class="pause">pause</button>
-                <button class="start">start</button>
-                <button class="restart">reset</button>
-            </div>
         </div>
     </body>
 </html>

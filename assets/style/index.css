@@ -10,6 +10,7 @@
     --col-white: #edeaea;
     --col-black: #111111;
     --col-dark: #1B2430;
+    --col-other-dark: #2D343F;
 }
 
 .container {
@@ -37,3 +38,86 @@ body {
 }
 
 /*--------end of general--------*/
+
+
+/*--------THE HEAD--------*/
+.pageTitle {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.btn {
+    margin: 30px 10px 15px 10px;
+    width: 75px;
+    height: 50px;
+    background-color: var(--col-main-blue);
+    border-radius: 24px;
+}
+/*--------end of the head--------*/
+
+
+/*--------SCORE BOARD--------*/
+
+.scoreBoard {
+    border: 2px solid var(--col-main-orange);
+    display: flex;
+    margin: 15px 0px 15px 0px;
+    height: 100px;
+    width: 800px;
+    justify-content: space-between;
+}
+
+.SB {
+    margin: 0px 60px 0px 60px;
+    font-size: 20px;
+    width: 110px;
+    text-align: center;
+}
+
+.sbWPM {
+    border-radius: 24px;
+    background-color: var(--col-other-dark);
+}
+
+.sbTimer {
+    width: 120px;
+    text-align: center;
+    border-radius: 24px;
+    background-color: var(--col-other-dark);
+    font-size: 30px;
+}
+
+.sbScore {
+    border-radius: 24px;
+    background-color: var(--col-other-dark);
+}
+
+/*--------end of score board--------*/
+
+
+/*--------GAME BOARD--------*/
+
+.gameBoard {
+    border: 2px solid var(--col-main-orange);
+    width: 800px;
+    height: 500px;
+}
+
+.theWord {
+    width: 500px;
+    height: 100px;
+    border: 2px solid var(--col-main-orange);
+    font-size: 50px;
+    text-align: center;
+}
+
+.typingArea {
+    width: 400px;
+    height: 100px;
+    border-radius: 24px;
+    background-color: var(--col-other-dark);
+    border: 1px solid var(--col-main-blue);
+}
+
+/*--------end of game board--------*/
