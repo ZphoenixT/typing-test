@@ -96,12 +96,13 @@ body {
 /*--------SCORE BOARD--------*/
 
 .scoreBoard {
-    border: 2px solid var(--col-main-orange);
     display: flex;
+    justify-content: space-between;
     margin: 15px 0px 15px 0px;
     height: 100px;
     width: 800px;
-    justify-content: space-between;
+    border-radius: 24px;
+    background-color: var(--col-other-dark);
 }
 
 .SB {
@@ -111,22 +112,12 @@ body {
     text-align: center;
 }
 
-.sbWPM {
-    border-radius: 24px;
-    background-color: var(--col-other-dark);
-}
-
 .sbTimer {
     width: 120px;
     text-align: center;
     border-radius: 24px;
     background-color: var(--col-other-dark);
     font-size: 30px;
-}
-
-.sbScore {
-    border-radius: 24px;
-    background-color: var(--col-other-dark);
 }
 
 /*--------end of score board--------*/
