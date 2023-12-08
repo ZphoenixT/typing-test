@@ -10,6 +10,7 @@ function shuffleArray(array) {
 
 let randomizedWords = generateNewArray();
 let updatedScore = 0;
+let gameSound = document.getElementById('music');
 
 function generateNewArray() {
     const words = [
@@ -36,12 +37,21 @@ function generateNewArray() {
     return shuffleArray([...words]); // Create a copy of the original array and shuffle it
 }
 
+function playGameSound() {
+    gameSound.play();
+}
+
+function stopGameSound() {
+    gameSound.pause();
+    gameSound.currentTime = 0;
+}
+
 const startBtn = document.querySelector('.start');
 const reStartBtn = document.querySelector('.restart');
 const hideSB = document.querySelector('.scores');
 
-startBtn.addEventListener('click', switchStart);
-reStartBtn.addEventListener('click', switchReStart);
+startBtn.addEventListener('click', switchStart, playGameSound);
+reStartBtn.addEventListener('click', switchReStart, stopGameSound);
 
 function switchStart() {
     const startButton = document.querySelector('.start');
