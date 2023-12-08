@@ -198,3 +198,30 @@ body {
 .helpInfoText {
     margin-top: 25px;
 }
+
+/* 
+----------HIGH SCORE----------
+*/
+
+dialog {
+    width: 200px;
+    height: 300px;
+    border-radius: 8px;
+    border: 2px solid var(--col-main-blue);
+    box-shadow: 1px 1px 20px 1px #01a6e890;
+    background-color: var(--col-other-dark);
+    color: #fff;
+    position: fixed;
+    top: 214px;
+    left: 1400px;
+    margin-inline: auto;
+    display: inline;
+}
+
+.hScore {
+    margin-top: 15px;
+}
+
+.theScore {
+    margin-top: 12px;
+}
