@@ -216,6 +216,8 @@ dialog {
     left: 1400px;
     margin-inline: auto;
     display: inline;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .hScore {

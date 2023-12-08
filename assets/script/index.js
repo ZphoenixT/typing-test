@@ -37,6 +37,7 @@ function generateNewArray() {
 
 const startBtn = document.querySelector('.start');
 const reStartBtn = document.querySelector('.restart');
+const hideSB = document.querySelector('.scores');
 
 startBtn.addEventListener('click', switchStart);
 reStartBtn.addEventListener('click', switchReStart);
@@ -47,6 +48,7 @@ function switchStart() {
 
     startButton.style.display = 'none';
     restartButton.style.display = 'inline';
+    hideSB.style.opacity = '0';
 }
 
 function switchReStart() {
@@ -55,6 +57,7 @@ function switchReStart() {
 
     startButton.style.display = 'inline';
     restartButton.style.display = 'none';
+    hideSB.style.opacity = '1';
 }
 
 
@@ -100,10 +103,10 @@ function checkInput() {
 
         // Reset the styles after 1sec
         setTimeout(() => {
-            wordDisplay.style.border = '2px solid #edeaea50';
-            wordDisplay.style.boxShadow = '1px 1px 20px 1px #edeaea40';
-            wordDisplay2.style.border = '1px solid #edeaea50';
-            wordDisplay2.style.boxShadow = '1px 1px 20px 1px #edeaea40';
+            wordDisplay.style.border = '2px solid #01a6e8';
+            wordDisplay.style.boxShadow = '1px 1px 20px 1px #01a6e890';
+            wordDisplay2.style.border = '1px solid #01a6e8';
+            wordDisplay2.style.boxShadow = '1px 1px 20px 1px #01a6e890';
         }, 1000);
     }
 
@@ -153,6 +156,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     clearInterval(timerInterval);
                     const typingArea = document.querySelector('.typingArea');
                     typingArea.disabled = true; 
+                    hideSB.style.opacity = '1';
                 }
             }, 1000);
             isTimerRunning = true;
