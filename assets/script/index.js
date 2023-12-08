@@ -9,6 +9,8 @@ function shuffleArray(array) {
 }
 
 let randomizedWords = generateNewArray();
+let updatedScore = 0;
+let gameSound = document.getElementById('music');
 
 function generateNewArray() {
     const words = [
@@ -35,6 +37,41 @@ function generateNewArray() {
     return shuffleArray([...words]); // Create a copy of the original array and shuffle it
 }
 
+function playGameSound() {
+    gameSound.play();
+}
+
+function stopGameSound() {
+    gameSound.pause();
+    gameSound.currentTime = 0;
+}
+
+const startBtn = document.querySelector('.start');
+const reStartBtn = document.querySelector('.restart');
+const hideSB = document.querySelector('.scores');
+
+startBtn.addEventListener('click', switchStart, playGameSound);
+reStartBtn.addEventListener('click', switchReStart, stopGameSound);
+
+function switchStart() {
+    const startButton = document.querySelector('.start');
+    const restartButton = document.querySelector('.restart');
+
+    startButton.style.display = 'none';
+    restartButton.style.display = 'inline';
+    hideSB.style.opacity = '0';
+}
+
+function switchReStart() {
+    const startButton = document.querySelector('.start');
+    const restartButton = document.querySelector('.restart');
+
+    startButton.style.display = 'inline';
+    restartButton.style.display = 'none';
+    hideSB.style.opacity = '1';
+}
+
+
 function displayFirstWord() {
     const firstWord = randomizedWords[0];
     const wordDisplay = document.querySelector('.theWord');
@@ -51,8 +88,9 @@ function checkInput() {
         // add 1 to the score
         const scoreElement = document.querySelector('.score');
         const currentScore = parseInt(scoreElement.textContent.split('/')[0]);
-        const updatedScore = currentScore + 1;
-        scoreElement.textContent = `${updatedScore}/120`;
+        updatedScore = currentScore + 1;
+        scoreElement.textContent = `${updatedScore}/120`; //score-------------------
+        localStorage.setItem(`score`, `${updatedScore}`);
 
         // Splice the first word in the array
         randomizedWords.splice(0, 1);
@@ -77,10 +115,10 @@ function checkInput() {
 
         // Reset the styles after 1sec
         setTimeout(() => {
-            wordDisplay.style.border = '2px solid #edeaea50';
-            wordDisplay.style.boxShadow = '1px 1px 20px 1px #edeaea40';
-            wordDisplay2.style.border = '1px solid #edeaea50';
-            wordDisplay2.style.boxShadow = '1px 1px 20px 1px #edeaea40';
+            wordDisplay.style.border = '2px solid #01a6e8';
+            wordDisplay.style.boxShadow = '1px 1px 20px 1px #01a6e890';
+            wordDisplay2.style.border = '1px solid #01a6e8';
+            wordDisplay2.style.boxShadow = '1px 1px 20px 1px #01a6e890';
         }, 1000);
     }
 
@@ -95,12 +133,11 @@ function checkInput() {
 
 document.addEventListener("DOMContentLoaded", function() {
     let timerInterval;
-    let timerValue = 100; // time
+    let timerValue = 15; // time ---------------------------------------
     let isTimerRunning = false;
 
     const timerDisplay = document.querySelector('.timer');
     const startBtn = document.querySelector('.start');
-    const pauseBtn = document.querySelector('.pause');
     const restartBtn = document.querySelector('.restart');
     const helpBtn = document.querySelector('.help');
     const modal = document.querySelector('.modal');
@@ -129,8 +166,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 timerDisplay.textContent = timerValue;
                 if (timerValue <= 0) {
                     clearInterval(timerInterval);
+                    //wordsPerMin();
                     const typingArea = document.querySelector('.typingArea');
                     typingArea.disabled = true; 
+                    hideSB.style.opacity = '1';
+
+                    // Save the final score in localStorage
+                localStorage.setItem('finalScore', updatedScore);
+
+                // Retrieve the latest score from localStorage
+                const latestScore = localStorage.getItem('finalScore');
+
+                updateDialogScores(parseInt(latestScore));
                 }
             }, 1000);
             isTimerRunning = true;
@@ -144,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function resetTimer() {
         clearInterval(timerInterval);
-        timerValue = 100; 
+        timerValue = 15; //time2 -------------------------------------- 
         timerDisplay.textContent = timerValue;
         isTimerRunning = false;
         startBtn.disabled = false;
@@ -156,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
         // Reset displayed word
         const wordDisplay = document.querySelector('.theWord');
-        wordDisplay.textContent = 'Word Appears Here';
+        wordDisplay.textContent = 'Ready?';
 
         // Reset score
         const scoreElement = document.querySelector('.score');
@@ -180,16 +227,63 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     startBtn.disabled = true;
-    startBtn.addEventListener('click', startTimer);
-    pauseBtn.addEventListener('click', startTimer); 
+    startBtn.addEventListener('click', startTimer); 
     restartBtn.addEventListener('click', resetTimer);
 
-    // Enable Start button when timer reaches 100
+    // Enable Start button when timer reaches timerValue 
     setInterval(() => {
-        if (timerValue === 100) {
+        if (timerValue === timerValue) {
             startBtn.disabled = false;
         } else {
             startBtn.disabled = true;
         }
     }, 1000);
 });
+
+function updateDialogScores(updatedScore) {
+    const dialog = document.querySelector('.scores');
+    const theScoreDiv = dialog.querySelector('.theScore');
+    const scores = theScoreDiv.querySelectorAll('p');
+
+    let placed = false;
+
+    //if there are already 10 scores and remove the lowest score
+    if (scores.length === 10) {
+        const lowestScore = parseInt(scores[scores.length - 1].textContent);
+        if (updatedScore > lowestScore) {
+            theScoreDiv.removeChild(scores[scores.length - 1]);
+        } else {
+            return; //if the new score is not greater, dont add it
+        }
+    }
+
+    for (let i = 0; i < scores.length; i++) {
+        const currentScore = parseInt(scores[i].textContent);
+        if (updatedScore > currentScore) {
+            const newScoreElement = document.createElement('p');
+            newScoreElement.textContent = updatedScore;
+
+            //add updated score before the current score
+            theScoreDiv.insertBefore(newScoreElement, scores[i]);
+
+            placed = true;
+            break;
+        }
+    }
+
+    if (!placed && scores.length < 9) {
+        const newScoreElement = document.createElement('p');
+        newScoreElement.textContent = updatedScore;
+
+        // If the updated score is not greater than any existing score and there are less than 10 scores, add it at the end
+        theScoreDiv.appendChild(newScoreElement);
+    }
+}
+
+// putting a pin in here, will add/fix this at a later date
+
+// function wordsPerMin() {
+//     let min = timerValue / 60;
+//     let wpm = (updatedScore / min);
+//     console.log(wpm);
+// }

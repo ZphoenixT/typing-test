@@ -14,6 +14,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+        <audio id="music" src="./assets/gameMusic.mp3"></audio>
     </head>
     <body>
         <div class="container center textStyle">
@@ -21,9 +22,6 @@
             <div class="theHead center">
                 <h1 class="pageTitle">Keyboard Khaos</h1>
                 <div class="gameButtons">
-                    <button class="btn pause textStyle">
-                        Pause <i class="fa-solid fa-pause"></i>
-                    </button>
                     <button class="btn start textStyle">
                         Start <i class="fa-solid fa-play"></i>
                     </button>
@@ -68,10 +66,10 @@
 
             <div class="scoreBoard center">
                 <div class="SB sbWPM">
-                    <h3 class="wordsPerMin">38 wpm</h3>
+                    <h3 class="wordsPerMin">0 wpm</h3>
                 </div>
                 <div class="sbTimer">
-                    <h2 class="timer">100</h2>
+                    <h2 class="timer">15</h2>
                 </div>
                 <div class="SB sbScore">
                     <h3 class="score">0/120</h3>
@@ -80,12 +78,19 @@
 
             <div class="gameBoard center">
                 <div class="wordDisplay">
-                    <h2 class="theWord">Word Appears Here</h2>
+                    <h2 class="theWord">Ready?</h2>
                 </div>
                 <div class="typingBox">
                     <input type="text" class="typingArea">
                 </div>
             </div>
         </div>
+        <dialog class="scores">
+            <h3 class="hScore center">High Scores</h3>
+            <div class="theScore center">
+            
+            </div>
+        </dialog>
+
     </body>
 </html>
