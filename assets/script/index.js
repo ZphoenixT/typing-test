@@ -100,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const timerDisplay = document.querySelector('.timer');
     const startBtn = document.querySelector('.start');
-    const pauseBtn = document.querySelector('.pause');
     const restartBtn = document.querySelector('.restart');
     const helpBtn = document.querySelector('.help');
     const modal = document.querySelector('.modal');
