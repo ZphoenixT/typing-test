@@ -35,6 +35,29 @@ function generateNewArray() {
     return shuffleArray([...words]); // Create a copy of the original array and shuffle it
 }
 
+const startBtn = document.querySelector('.start');
+const reStartBtn = document.querySelector('.restart');
+
+startBtn.addEventListener('click', switchStart);
+reStartBtn.addEventListener('click', switchReStart);
+
+function switchStart() {
+    const startButton = document.querySelector('.start');
+    const restartButton = document.querySelector('.restart');
+
+    startButton.style.display = 'none';
+    restartButton.style.display = 'inline';
+}
+
+function switchReStart() {
+    const startButton = document.querySelector('.start');
+    const restartButton = document.querySelector('.restart');
+
+    startButton.style.display = 'inline';
+    restartButton.style.display = 'none';
+}
+
+
 function displayFirstWord() {
     const firstWord = randomizedWords[0];
     const wordDisplay = document.querySelector('.theWord');
@@ -95,7 +118,7 @@ function checkInput() {
 
 document.addEventListener("DOMContentLoaded", function() {
     let timerInterval;
-    let timerValue = 100; // time
+    let timerValue = 15; // time ---------------------------------------
     let isTimerRunning = false;
 
     const timerDisplay = document.querySelector('.timer');
@@ -155,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
         // Reset displayed word
         const wordDisplay = document.querySelector('.theWord');
-        wordDisplay.textContent = 'Word Appears Here';
+        wordDisplay.textContent = 'Ready?';
 
         // Reset score
         const scoreElement = document.querySelector('.score');
@@ -179,13 +202,12 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     startBtn.disabled = true;
-    startBtn.addEventListener('click', startTimer);
-    pauseBtn.addEventListener('click', startTimer); 
+    startBtn.addEventListener('click', startTimer); 
     restartBtn.addEventListener('click', resetTimer);
 
-    // Enable Start button when timer reaches 100
+    // Enable Start button when timer reaches timerValue 
     setInterval(() => {
-        if (timerValue === 100) {
+        if (timerValue === timerValue) {
             startBtn.disabled = false;
         } else {
             startBtn.disabled = true;
