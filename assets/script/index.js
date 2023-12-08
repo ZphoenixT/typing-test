@@ -166,6 +166,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 timerDisplay.textContent = timerValue;
                 if (timerValue <= 0) {
                     clearInterval(timerInterval);
+                    //wordsPerMin();
                     const typingArea = document.querySelector('.typingArea');
                     typingArea.disabled = true; 
                     hideSB.style.opacity = '1';
@@ -246,13 +247,13 @@ function updateDialogScores(updatedScore) {
 
     let placed = false;
 
-    // Check if there are already 10 scores and remove the lowest score
+    //if there are already 10 scores and remove the lowest score
     if (scores.length === 10) {
         const lowestScore = parseInt(scores[scores.length - 1].textContent);
         if (updatedScore > lowestScore) {
             theScoreDiv.removeChild(scores[scores.length - 1]);
         } else {
-            return; // If the new score is not greater, don't add it
+            return; //if the new score is not greater, dont add it
         }
     }
 
@@ -262,7 +263,7 @@ function updateDialogScores(updatedScore) {
             const newScoreElement = document.createElement('p');
             newScoreElement.textContent = updatedScore;
 
-            // Place the updated score before the current score
+            //add updated score before the current score
             theScoreDiv.insertBefore(newScoreElement, scores[i]);
 
             placed = true;
@@ -278,3 +279,11 @@ function updateDialogScores(updatedScore) {
         theScoreDiv.appendChild(newScoreElement);
     }
 }
+
+// putting a pin in here, will add/fix this at a later date
+
+// function wordsPerMin() {
+//     let min = timerValue / 60;
+//     let wpm = (updatedScore / min);
+//     console.log(wpm);
+// }
