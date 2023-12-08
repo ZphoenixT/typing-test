@@ -9,6 +9,7 @@ function shuffleArray(array) {
 }
 
 let randomizedWords = generateNewArray();
+let updatedScore = 0;
 
 function generateNewArray() {
     const words = [
@@ -77,8 +78,9 @@ function checkInput() {
         // add 1 to the score
         const scoreElement = document.querySelector('.score');
         const currentScore = parseInt(scoreElement.textContent.split('/')[0]);
-        const updatedScore = currentScore + 1;
-        scoreElement.textContent = `${updatedScore}/120`;
+        updatedScore = currentScore + 1;
+        scoreElement.textContent = `${updatedScore}/120`; //score-------------------
+        localStorage.setItem(`score`, `${updatedScore}`);
 
         // Splice the first word in the array
         randomizedWords.splice(0, 1);
@@ -157,6 +159,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     const typingArea = document.querySelector('.typingArea');
                     typingArea.disabled = true; 
                     hideSB.style.opacity = '1';
+
+                    // Save the final score in localStorage
+                localStorage.setItem('finalScore', updatedScore);
+
+                // Retrieve the latest score from localStorage
+                const latestScore = localStorage.getItem('finalScore');
+
+                updateDialogScores(parseInt(latestScore));
                 }
             }, 1000);
             isTimerRunning = true;
@@ -218,3 +228,43 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }, 1000);
 });
+
+function updateDialogScores(updatedScore) {
+    const dialog = document.querySelector('.scores');
+    const theScoreDiv = dialog.querySelector('.theScore');
+    const scores = theScoreDiv.querySelectorAll('p');
+
+    let placed = false;
+
+    // Check if there are already 10 scores and remove the lowest score
+    if (scores.length === 10) {
+        const lowestScore = parseInt(scores[scores.length - 1].textContent);
+        if (updatedScore > lowestScore) {
+            theScoreDiv.removeChild(scores[scores.length - 1]);
+        } else {
+            return; // If the new score is not greater, don't add it
+        }
+    }
+
+    for (let i = 0; i < scores.length; i++) {
+        const currentScore = parseInt(scores[i].textContent);
+        if (updatedScore > currentScore) {
+            const newScoreElement = document.createElement('p');
+            newScoreElement.textContent = updatedScore;
+
+            // Place the updated score before the current score
+            theScoreDiv.insertBefore(newScoreElement, scores[i]);
+
+            placed = true;
+            break;
+        }
+    }
+
+    if (!placed && scores.length < 9) {
+        const newScoreElement = document.createElement('p');
+        newScoreElement.textContent = updatedScore;
+
+        // If the updated score is not greater than any existing score and there are less than 10 scores, add it at the end
+        theScoreDiv.appendChild(newScoreElement);
+    }
+}
