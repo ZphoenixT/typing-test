@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function resetTimer() {
         clearInterval(timerInterval);
-        timerValue = 100; 
+        timerValue = 15; //time2 -------------------------------------- 
         timerDisplay.textContent = timerValue;
         isTimerRunning = false;
         startBtn.disabled = false;
